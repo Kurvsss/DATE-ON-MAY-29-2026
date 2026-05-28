@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Special Question 💚</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <span class="leaf leaf-1">🍃</span>
+  <span class="leaf leaf-2">🌿</span>
+  <span class="leaf leaf-3">🍀</span>
+  <span class="leaf leaf-4">🌱</span>
+  <span class="leaf leaf-5">🍃</span>
+  <span class="leaf leaf-6">🌿</span>
+  <span class="leaf leaf-7">🍀</span>
+  <span class="leaf leaf-8">🌱</span>
+
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <div class="card">
+    <span class="title-emoji">💚</span>
+    <h1>Hey, You.</h1>
+    <div class="date-badge">May 29, 2026</div>
+    <p class="question">Can I date you<br>on May 29, 2026?</p>
+    <div class="btn-group" id="btnGroup">
+      <button class="btn btn-yes" onclick="handleYes()">Yes 💚</button>
+      <button class="btn btn-no" id="noBtn" onclick="handleNo()">No</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <span class="popup-emoji">😘</span>
+      <h2> OMG Yey!</h2>
+      <p>Really!, You Said Yes! 🌿</p>
+      <p class="time-info">📅 See you, <strong>LOVEY</strong><br>🕙 Time: 10:00 AM</p>
+      <p>Can't wait! 💚</p>
+      <button class="popup-close" onclick="closePopup()">Close 💚</button>
+    </div>
+  </div>
+
+  <script>
+    (function spawnHearts() {
+      const container = document.getElementById('heartsBg');
+      const symbols = ['💚', '🌿', '🍃', '💚', '🌱'];
+      for (let i = 0; i < 18; i++) {
+        const el = document.createElement('span');
+        el.classList.add('heart-fall');
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = (Math.random() * 100) + 'vw';
+        el.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+        el.style.animationDuration = (6 + Math.random() * 8) + 's';
+        el.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(el);
+      }
+    })();
+
+    let noClicked = false;
+
+    function handleNo() {
+      if (noClicked) return;
+      noClicked = true;
+      const noBtn = document.getElementById('noBtn');
+      noBtn.style.transition = 'transform 0.1s';
+      let count = 0;
+      const wiggle = setInterval(() => {
+        noBtn.style.transform = count % 2 === 0 ? 'rotate(-8deg)' : 'rotate(8deg)';
+        count++;
+        if (count > 6) {
+          clearInterval(wiggle);
+          noBtn.style.transform = '';
+          noBtn.textContent = 'Yes 💚';
+          noBtn.classList.remove('btn-no');
+          noBtn.classList.add('btn-yes');
+          noBtn.setAttribute('onclick', 'handleYes()');
+        }
+      }, 80);
+    }
+
+    function handleYes() {
+      launchConfetti();
+      document.getElementById('overlay').classList.add('show');
+    }
+
+    function closePopup() {
+      document.getElementById('overlay').classList.remove('show');
+    }
+
+    function launchConfetti() {
+      const colors = ['#4caf74', '#a8d5b5', '#d4edda', '#2d7a4f', '#ffffff'];
+      for (let i = 0; i < 60; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('confetti-piece');
+        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.left = (20 + Math.random() * 60) + 'vw';
+        dot.style.top = (20 + Math.random() * 40) + 'vh';
+        document.body.appendChild(dot);
+        const angle = Math.random() * 360;
+        const dist = 80 + Math.random() * 160;
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist;
+        const dur = 600 + Math.random() * 800;
+        dot.animate([
+          { opacity: 1, transform: 'translate(0,0) scale(1)' },
+          { opacity: 0, transform: `translate(${dx}px, ${dy}px) scale(0.3)` }
+        ], { duration: dur, easing: 'ease-out', fill: 'forwards' })
+        .onfinish = () => dot.remove();
+      }
+    }
+
+    document.getElementById('overlay').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+  </script>
+
+</body>
+</html>

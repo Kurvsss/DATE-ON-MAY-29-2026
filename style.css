@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --green-dark:   #1a4a2e;
+  --green-mid:    #2d7a4f;
+  --green-light:  #4caf74;
+  --green-pale:   #a8d5b5;
+  --green-pastel: #d4edda;
+  --white:        #ffffff;
+  --glow:         rgba(76, 175, 116, 0.45);
+}
+
+*, *::before, *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html, body { height: 100%; width: 100%; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--green-dark);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(45,122,79,0.35) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.leaf {
+  position: fixed;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  font-size: 3rem;
+  animation: floatLeaf 6s ease-in-out infinite;
+}
+
+.leaf-1  { top: 5%;   left: 5%;   font-size: 4rem;   animation-delay: 0s;    animation-duration: 7s; }
+.leaf-2  { top: 10%;  right: 8%;  font-size: 2.5rem; animation-delay: 1s;    animation-duration: 8s; }
+.leaf-3  { bottom: 8%;  left: 10%; font-size: 3.5rem; animation-delay: 2s;   animation-duration: 6s; }
+.leaf-4  { bottom: 12%; right: 6%; font-size: 2rem;   animation-delay: 0.5s; animation-duration: 9s; }
+.leaf-5  { top: 40%;  left: 2%;   font-size: 2.5rem; animation-delay: 3s;    animation-duration: 7s; }
+.leaf-6  { top: 35%;  right: 3%;  font-size: 3rem;   animation-delay: 1.5s;  animation-duration: 8s; }
+.leaf-7  { top: 70%;  left: 3%;   font-size: 1.8rem; animation-delay: 4s;    animation-duration: 6s; }
+.leaf-8  { top: 20%;  left: 45%;  font-size: 1.5rem; animation-delay: 2.5s;  animation-duration: 10s; }
+
+@keyframes floatLeaf {
+  0%   { transform: translateY(0px)   rotate(0deg); }
+  33%  { transform: translateY(-18px) rotate(8deg); }
+  66%  { transform: translateY(-8px)  rotate(-5deg); }
+  100% { transform: translateY(0px)   rotate(0deg); }
+}
+
+.hearts-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart-fall {
+  position: absolute;
+  top: -50px;
+  opacity: 0;
+  animation: fallDown linear infinite;
+  color: var(--green-pale);
+}
+
+@keyframes fallDown {
+  0%   { transform: translateY(0)     rotate(0deg);   opacity: 0.6; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(145deg, #1e5c38, #163d27);
+  border: 1.5px solid var(--green-mid);
+  border-radius: 24px;
+  padding: 3rem 3.5rem;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  box-shadow:
+    0 0 40px rgba(45,122,79,0.3),
+    0 0 80px rgba(45,122,79,0.12),
+    inset 0 0 30px rgba(0,0,0,0.15);
+}
+
+.card::before, .card::after {
+  content: '🌿';
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.35;
+}
+.card::before { top: 12px;    left: 16px; }
+.card::after  { bottom: 12px; right: 16px; transform: rotate(180deg); }
+
+.title-emoji {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.12); }
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.4rem;
+  color: var(--green-pale);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px var(--glow);
+}
+
+.date-badge {
+  display: inline-block;
+  background: var(--green-mid);
+  color: var(--green-pastel);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 5px 18px;
+  border-radius: 999px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--green-light);
+}
+
+.question {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 2.2rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 2.2rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active { transform: scale(0.95) !important; }
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+  color: var(--white);
+  box-shadow: 0 4px 18px rgba(76,175,116,0.45);
+}
+
+.btn-yes:hover {
+  transform: scale(1.07) translateY(-2px);
+  box-shadow: 0 8px 28px rgba(76,175,116,0.6);
+}
+
+.btn-no {
+  background: transparent;
+  color: var(--green-pale);
+  border: 1.5px solid var(--green-pale);
+}
+
+.btn-no:hover {
+  transform: scale(1.05);
+  background: rgba(168,213,181,0.08);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,30,18,0.88);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.overlay.show { opacity: 1; pointer-events: all; }
+
+.popup {
+  background: linear-gradient(145deg, #1e5c38, #163d27);
+  border: 1.5px solid var(--green-light);
+  border-radius: 24px;
+  padding: 3rem 3.5rem;
+  text-align: center;
+  max-width: 400px;
+  width: 88%;
+  box-shadow: 0 0 60px rgba(76,175,116,0.35);
+  transform: scale(0.85);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.overlay.show .popup { transform: scale(1); }
+
+.popup-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: swing 1.5s ease-in-out infinite;
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
+}
+
+.popup h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: var(--green-pale);
+  margin-bottom: 0.5rem;
+}
+
+.popup p {
+  font-size: 1rem;
+  color: var(--green-pastel);
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+}
+
+.popup .time-info {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.popup-close {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 2rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--green-mid);
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.popup-close:hover { transform: scale(1.05); background: var(--green-light); }
+
+.confetti-piece {
+  position: fixed;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0;
+}
